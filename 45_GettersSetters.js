@@ -115,3 +115,72 @@ console.log(person.firstName);
 console.log(person.lastName);
 console.log(person.fullName);
 console.log(person.age);
+
+// ----------------------------------------------------------------------
+
+
+class BankAccount {
+    constructor(balance, accountNumber) {
+        this.balance = balance;
+        this.accountNumber = accountNumber;
+    }
+
+    // Setters
+
+    set balance(newBalance) {
+        if (newBalance >= 0) {
+            this._balance = newBalance;
+        }
+        else {
+            console.error("Balance must be a pozitive number");
+        }
+    }
+
+    set accountNumber(newAccountNumber) {
+        if (typeof newAccountNumber === 'string' && newAccountNumber.length >= 12) {
+            this._accountNumber = newAccountNumber;
+        }
+        else {
+            console.error("Account number must be a string and the length must be equal or greater than 12");
+        }
+    }
+
+    // Getters
+
+    get balance() {
+        return `$${this._balance.toFixed(2)}`;
+    }
+
+    get accountNumber() {
+        return this._accountNumber;
+    }
+
+    // Methods
+
+    deposit(amount) {
+        if (amount > 0) {
+            this._balance += amount;
+        }
+        else {
+            console.error("Deposit amount must be positive");
+        }
+    }
+
+    withdraw(amount) {
+        if (amount > 0 && amount <= this._balance) {
+            this._balance -= amount;
+        }
+        else {
+            console.error("Withdrawal amount must be positive and less than or equal to the balance");
+        }
+    }
+
+}
+
+// const bankAccount = new BankAccount("onethousand", 123456789012);
+const bankAccount = new BankAccount(10000, "123456789012");
+
+bankAccount.deposit(50);
+bankAccount.withdraw(500);
+console.log(bankAccount.balance);
+console.log(bankAccount.accountNumber);
