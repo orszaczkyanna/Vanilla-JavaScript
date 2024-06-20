@@ -60,3 +60,51 @@ console.log(person3.address);
 for (const key in person3.address) {
     console.log(person3.address[key]);
 }
+
+
+// ----------------------------------------------------------------
+
+class Company {
+    constructor(name, ...employees) {
+        this.name = name;
+
+        // Átalakítja az alkalmazottak tömbben megadott adatait Employee objektumokká
+        this.employees = employees.map(emp => new Employee(...emp));
+        // emp = employees[0] = ["Spongebob", 30, "Fry Cook", 3000]
+        // new Employee("Spongebob", 30, "Fry Cook", 3000)
+    }
+
+    // Hozzáad egy új Employee objektumot az employees tömbhöz
+    addEmployee(...employee) {
+        this.employees.push(new Employee(...employee));
+    }
+}
+
+class Employee {
+    constructor(name, age, ...job) {
+        this.name = name;
+        this.age = age;
+        this.job = new Job(...job);
+    }
+}
+
+class Job {
+    constructor(title, salary) {
+        this.title = title;
+        this.salary = salary;
+    }
+}
+
+const company = new Company("Krusty Krab",
+    ["Spongebob", 30, "Fry Cook", 3000],
+    ["Patrick", 37, "Cashier", 2500],
+    ["Squidward", 37, "Manager", 3500]
+);
+
+company.addEmployee("Mr.Krabs", 55, "Owner", 5000);
+
+console.log(company.name);
+for (const employee of company.employees) {
+    console.log(`Employee: ${employee.name}, Age: ${employee.age}`);
+    console.log(`Job: ${employee.job.title}, Salary: ${employee.job.salary}`);
+}
