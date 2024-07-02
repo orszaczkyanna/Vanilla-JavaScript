@@ -1,0 +1,65 @@
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: hsl(0, 0%, 95%);
+}
+
+#calculator {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: hsl(0, 0%, 15%);
+    border-radius: 15px;
+    max-width: 500px;    
+    overflow: hidden; /* for display if we have a very long equation*/
+}
+
+#display {
+    width: 100%;
+    padding: 20px;
+    font-size: 5rem;
+    text-align: left;
+    border: none;
+    background-color: hsl(0, 0%, 20%);
+    color:white;
+}
+
+#keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 oszlop, ugyanannyi helyet foglaljanak el */
+    gap: 10px;
+    /*  repeat function of CSS
+    4 columns;
+    1fr: fractional unit -> each column should take up an even amount of space */
+    /* gap:between rows and columns */
+    padding: 25px;    
+}
+
+button {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: hsl(0, 0%, 30%);
+    color: white;
+    border: none;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+button:hover {
+    background-color: hsl(0, 0%, 40%);
+}
+button:active {
+    background-color: hsl(0, 0%, 50%);
+}
+
+.operator-btn {
+    background-color: hsl(35, 100%, 55%);
+}
+.operator-btn:hover {
+    background-color: hsl(35, 100%, 65%);
+}
+.operator-btn:active {
+    background-color: hsl(35, 100%, 75%);
+}
