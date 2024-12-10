@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Tutorial: https://www.youtube.com/watch?v=fWPOD3CAFM8 -->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Language Changer</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <style>
+        *{
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            position: relative;
+            max-width: 600px;
+            height: 500px;
+            padding: 50px;
+            color: #555;
+            text-align: center;
+        }
+
+        .langWrap {
+            background-color: #333;
+        }
+
+        a{
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #fff;
+            padding: 0 15px;
+            font-weight: bold;
+            background-color: #555656;
+            font-size: 18px;
+        }
+
+        a.active{
+            background-color: #f21313;
+        }
+
+        .content {
+            margin-top: 20px;
+            font-size: 20px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="langWrap">
+            <a href="#" language="english" class="active">EN</a>
+            <a href="#" language="kazakh">ҚАЗ</a>
+            <a href="#" language="japanese">あ</a>
+        </div>
+        <div class="content">
+            <h2 class="title">Hello World</h2>
+            <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non adipisci eligendi repellat ad dolor veritatis itaque sequi
+            minus iste, doloremque. Officiis non eaque atque excepturi repudiandae nulla eos eligendi magni molestiae eius
+            distinctio, voluptas pariatur incidunt et culpa inventore aspernatur recusandae nihil asperiores, vitae, maiores laborum
+            quasi perspiciatis natus dignissimos! Accusantium aliquam nostrum impedit dignissimos iste, iure inventore! Sapiente,
+            labore earum ut dicta ducimus asperiores laudantium natus officiis, quisquam placeat aspernatur voluptatum aut
+            voluptates tenetur quos magni fugit quia. Fugiat.</p>
+        </div>
+    </div>
+
+    <script>
+        const langEl = document.querySelector('.langWrap');
+        const link = document.querySelectorAll('.langWrap a');
+        const titleEl = document.querySelector('.title');
+        const descEl = document.querySelector('.description');
+
+        link.forEach(el => {
+            el.addEventListener('click', () => {
+
+                langEl.querySelector('.active').classList.remove('active');
+                el.classList.add('active');
+
+                const attr = el.getAttribute('language');
+
+                titleEl.textContent = data[attr].title;
+                descEl.textContent = data[attr].description;
+
+            });
+        });
+
+        // link.forEach(el => {
+        //         el.addEventListener('click', () => {
+        //             langEl.querySelector('.active').classList.toggle('active');
+        //             el.classList.toggle('active');
+        //         });
+        //     });
+
+        const data = {
+                "english":
+                {
+                    "title": "Hello World",
+                    "description":
+                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non adipisci eligendi repellat ad dolor veritatis itaque sequi minus iste, doloremque. Officiis non eaque atque excepturi repudiandae nulla eos eligendi magni molestiae eius distinctio, voluptas pariatur incidunt et culpa inventore aspernatur recusandae nihil asperiores, vitae, maiores laborum quasi perspiciatis natus dignissimos! Accusantium aliquam nostrum impedit dignissimos iste, iure inventore! Sapiente, labore earum ut dicta ducimus asperiores laudantium natus officiis, quisquam placeat aspernatur voluptatum aut voluptates tenetur quos magni fugit quia. Fugiat."
+                },
+                "kazakh":
+                {
+                    "title": "Сәлем Әлем",
+                    "description":
+                        "Сәбіз Lorem ipsum, жеңілдік. Бұл ауырсыну үшін осы ұннан таңдамаңыз, сондықтан аз Осы ауырсынуды орындаңыз. Қызметтер жоқ және оның айырмашылығын ұлы ыңғайсыздық таңдау, тәжірибе ретінде қабылданған ештеңе өңдеу үшін нәтиже инцидент және қателіктерді зерттеуші ләззат, өмір, encounter born сияқты үлкен тағамдар-бәрі! Осы мәселе бойынша біздің сабоның кейбірін ашу, зерттеуші дұрыс! Дана, біз asperiores туған қызметтер тізімі деді олардың жұмыс, кез келген уақытта, содан бері үлкен жүгірістер, соның ішінде ләззат немесе рахат өңдеу сұраймыз. Қашуға."
+                },
+                "japanese":
+                {
+                    "title": "ハロー・ワールド",
+                    "description":
+                        "ﾂつｨﾂ知ﾂづｧﾂつｹﾂ-ﾂ新ﾂ陳ﾂ湘ｮﾂ陛ｱ これらの苦痛から真実の苦痛に選ぶために得てはいけない、従ってより少しにこの苦痛に従ってはいけない。 サービスではないと、彼の区別の大きな不快感から選択するそれらの否認を歓迎しない、結果として生じた事件の喜びと障害エクスプローラが受け入 このことについて私たちの下駄のいくつかを非難,右エクスプローラ! 的に仕事をしていまasperioresリストの生まれのサービスをつけてください編集喜びや楽しみの開催なども走りました。 走れ。."
+                }
+            }
+    </script>
+</body>
+</html>
