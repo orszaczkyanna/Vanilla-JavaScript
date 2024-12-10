@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>URL Object</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <script>
+      //   ----------------- URL Object -----------------
+      const myUrl_1 = new URL("https://www.youtube.com/watch?v=RIBiQ5GNYWo");
+      console.log(myUrl_1);
+      console.log(myUrl_1.hostname);
+      myUrl_1.hostname = "google.com";
+      console.log(myUrl_1.protocol);
+      console.log(myUrl_1.search);
+      console.log(myUrl_1.href);
+      console.log(myUrl_1.toString());
+
+      const myUrl_2 = new URL("https://www.google.com/");
+      myUrl_2.search = "?name=dom sg&age=56";
+      console.log(myUrl_2);
+
+      const myUrl_3 = new URL("http://localhost:3000/");
+      console.log(myUrl_3);
+
+      // ----------------- URLSearchParams -----------------
+      const myUrl_4 = new URL("https://www.google.com/");
+      myUrl_4.searchParams.set("name", "dom");
+      myUrl_4.searchParams.set("age", 56);
+
+      console.log(myUrl_4);
+      console.log(myUrl_4.toString());
+
+      const name_4 = myUrl_4.searchParams.get("name");
+      const age_4 = myUrl_4.searchParams.get("age");
+
+      console.log(name_4);
+      console.log(age_4);
+
+      // ----------------- Current Page -----------------
+      const myUrl_5 = new URL(window.location.href);
+      myUrl_5.searchParams.set("name", "john");
+      myUrl_5.searchParams.set("age", 72);
+      console.log(myUrl_5);
+
+      const name_5 = myUrl_5.searchParams.get("name");
+      const age_5 = myUrl_5.searchParams.get("age");
+      console.log(name_5);
+      console.log(age_5);
+
+      // ----------------- fetch() v1 -----------------
+      const myUrlFetch = new URL(
+        "https://api.openweathermap.org/data/2.5/weather"
+      );
+
+      //   myUrlFetch.searchParams.set("q", "berlin");
+      //   myUrlFetch.searchParams.set("appid", "minta123456789");
+
+      const mySearchParams = {
+        q: "berlin",
+        appid: "minta123456789",
+      };
+
+      myUrlFetch.search = new URLSearchParams(mySearchParams);
+
+      //   console.log(myUrlFetch.toString());
+      //   console.log(myUrlFetch);
+
+      fetch(myUrlFetch)
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((err) => console.error(err));
+
+      // ----------------- fetch() v2 -----------------
+      const baseUrl = "https://api.openweathermap.org/data/2.5/";
+      const infoType = "weather";
+
+      const myUrl = new URL(baseUrl + infoType);
+
+      myUrl.search = new URLSearchParams({
+        q: "berlin",
+        appid: "minta123456789",
+      });
+
+      fetch(myUrl)
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((err) => console.error(err));
+    </script>
+  </body>
+</html>
